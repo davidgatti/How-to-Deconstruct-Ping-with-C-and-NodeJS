@@ -89,26 +89,36 @@ int main() {
     unsigned char res[30] = "";
     struct sockaddr resAddress;
 
+    // The struct for the ICMP Echo replay
     typedef struct {
-        uint32_t first;
-        uint32_t last;
+        uint8_t type;
+        uint8_t code;
+        uint16_t checksum;
+        uint16_t identifier;
+        uint16_t sequence_number;
     } icmp_response_t;
 
+    // Read the response
     int ressponse = recvfrom(s, res, sizeof(res), 0, &resAddress, &resAddressSize);
 
-    if( ressponse > 0) {
+    // If we have bytes then lets display them
+    if(ressponse > 0) {
 
-        printf("Message is of length %d\n", ressponse);
+        printf("Response is %d bytes long, and has the following content:\n", ressponse);
 
-        for(int i = 0; i < ressponse; i++) {
+        // Map our resposne to our response struct
+        icmp_response_t* echo_response;
+        echo_response = (icmp_response_t *)&res[20];
 
-            printf("Byte %d = %x \n", i, res[i]);
-
-        }
-
-        icmp_response_t* myResponse;
-        myResponse = (icmp_response_t *)res;
-        printf("%x\n", myResponse->last);
+        // Log the data that we'v got back
+        printf(
+            "type: %x, code: %x, checksum: %x, identifier: %x, sequence: %x\n",
+            echo_response->type,
+            echo_response->code,
+            echo_response->checksum,
+            echo_response->identifier,
+            echo_response->sequence_number
+        );
 
         exit(0);
 
