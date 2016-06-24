@@ -65,3 +65,5 @@ node_modules
 
 # Debug files
 *.dSYM/
+
+*.sublime-project
