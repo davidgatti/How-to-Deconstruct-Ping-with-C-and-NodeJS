@@ -67,3 +67,4 @@ node_modules
 *.dSYM/
 
 *.sublime-project
+default.sublime-workspace
