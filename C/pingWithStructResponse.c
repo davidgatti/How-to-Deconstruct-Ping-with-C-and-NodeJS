@@ -106,7 +106,7 @@ int main() {
 
         printf("Response is %d bytes long, and has the following content:\n", ressponse);
 
-        // Map our resposne to our response struct
+        // Map our resposne to our response struct starting from byte 20
         icmp_response_t* echo_response;
         echo_response = (icmp_response_t *)&res[20];
 
