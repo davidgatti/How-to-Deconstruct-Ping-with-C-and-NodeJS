@@ -19,19 +19,19 @@ let data            = new Buffer(4);
 //
 type.writeUInt8(0x8, 0);
 code.writeUInt8(0x0, 0);
-identifier.writeUInt16BE(0x0, 0);
-sequence_number.writeUInt16BE(0x0, 0);
-chksum.writeUInt16BE(0xf7ff, 0);
-data.writeUInt32BE(0x0, 0);
+identifier.writeUInt16LE(0x0, 0);
+sequence_number.writeUInt16LE(0x0, 0);
+chksum.writeUInt16LE(0xfff7, 0);
+data.writeUInt32LE(0x0, 0);
 
 //
 //	3. push each separated buffer to the array
 //
 header.push(type);
 header.push(code);
+header.push(chksum);
 header.push(identifier);
 header.push(sequence_number);
-header.push(chksum);
 header.push(data);
 
 //
@@ -73,6 +73,9 @@ socket.on("message", function (buffer, source)
 		//
 	    console.log ("Received " + buffer.length + " bytes from " + source);
 
+		//
+    	//  8. Once we have our response we can exit the app
+    	//
 	    process.exit()
 	}
 );
