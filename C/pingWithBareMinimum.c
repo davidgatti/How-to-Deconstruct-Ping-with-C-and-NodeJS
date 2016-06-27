@@ -56,7 +56,8 @@ int main() {
     //
     //  6. Send our PING 
     //
-    int actionSendResult = sendto(s, &pckt, sizeof(pckt), 0, (struct sockaddr*)&addr, sizeof(addr));
+    int actionSendResult = sendto(s, &pckt, sizeof(pckt), 
+                                  0, (struct sockaddr*)&addr, sizeof(addr));
 
     //
     //  -> Exit the app if the option failed to be set
@@ -77,7 +78,8 @@ int main() {
     //
     //  8. Read the response from the remote host
     //
-    int ressponse = recvfrom(s, res, sizeof(res), 0, &resAddress, &resAddressSize);
+    int ressponse = recvfrom(s, res, sizeof(res), 0, &resAddress, 
+                             &resAddressSize);
 
     //
     //  -> Display the response in its raw form (hex)
