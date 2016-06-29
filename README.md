@@ -94,5 +94,3 @@ This also means that this module might work differently under different system s
 # Was it that bad?
 
 And you made it :) I hope this article was clear and to the point (of course if you would like me to explain something in more detail fell free to ask me). I hope by now no protocol will scare you anymore, and by now this word should make you exited to learn how a peace of software is able to communicate with another remote device, might it be a computer, IoT, or even radio. 
-
-`sudo make && sudo ./ping.out && make clean`
