@@ -4,7 +4,7 @@ let raw = require ("raw-socket");
 let header = [];
 
 //
-//  1. Create the structure where we are going to 
+//  1. Create the structure where we are going to
 //     save our header
 //
 let type            = new Buffer(1);
@@ -15,7 +15,7 @@ let sequence_number = new Buffer(2);
 let data            = new Buffer(4);
 
 //
-//  2. Wrtie the apropriate values.
+//  2. Write the appropriate values.
 //
 type.writeUInt8(0x8, 0);
 code.writeUInt8(0x0, 0);
@@ -40,7 +40,7 @@ header.push(data);
 let headerConcat = new Buffer.concat(header, 12);
 
 //
-//  5. Creatign the socket uign the ICMP protocol
+//  5. Creating the socket using the ICMP protocol
 //
 var socket = raw.createSocket(
     {
@@ -49,14 +49,14 @@ var socket = raw.createSocket(
 );
 
 //
-//  6. Sendign the request for a ping
+//  6. Sending the request for a ping
 //
 socket.send(headerConcat, 0, 12, "8.8.8.8", function(error, bytes)
     {
-        // 
+        //
         //  -> If there is any error, show it.
-        // 
-        if (error) 
+        //
+        if (error)
         {
             console.log(error.toString());
         }
@@ -64,44 +64,44 @@ socket.send(headerConcat, 0, 12, "8.8.8.8", function(error, bytes)
 );
 
 //
-//  7. Listent for the remote host response
+//  7. Listen for the remote host response
 //
 socket.on("message", function (buffer, source) {
 
 
-    // 
-    //  8. Create a buffer that will hold just our ICMP reaply, we don't need 
+    //
+    //  8. Create a buffer that will hold just our ICMP reply, we don't need
     //     the whole TCP blob :)
-    // 
+    //
     let icmpResponseBuffer = new Buffer(8);
-    
-    // 
+
+    //
     //  9.Copy only the fragment from the response that interest us,
-    //    startign at byte 20
-    // 
+    //    starting at byte 20
+    //
     buffer.copy(icmpResponseBuffer, 0, 20);
 
-    // 
-    //  10. Create all the buffers where we are goignto store the different
+    //
+    //  10. Create all the buffers where we are going to store the different
     //      information from the ICMP reply.
-    // 
+    //
     let type = new Buffer(1);
     let code = new Buffer(1);
     let checksum = new Buffer(2);
     let identifier = new Buffer(2);
     let sequence_number = new Buffer(2);
-    
-    // 
-    //  11. Copy bytes in to the apropierate buffer
-    // 
+
+    //
+    //  11. Copy bytes in to the appropriate buffer
+    //
     icmpResponseBuffer.copy(type, 0, 0);
     icmpResponseBuffer.copy(code, 0, 1);
     icmpResponseBuffer.copy(checksum, 0, 2);
     icmpResponseBuffer.copy(identifier, 0, 4);
     icmpResponseBuffer.copy(sequence_number, 0, 6);
-    
+
     //
-    //  -> Display in a human readable form the resposne that we got
+    //  -> Display in a human readable form the response that we got
     //
     console.log("type: %s, code: %s, checksum: %s, identifier: %s, sequence: %s",
                 type.toString('hex'),
