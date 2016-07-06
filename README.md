@@ -85,9 +85,9 @@ Until now, we've covered only the C code in this project, but why even put NodeJ
 
 Since the file names are exactly the same - as far as the format - you can easily open the matching files, and see the difference when you do certain things. For example, it is much easier in C to create a binary header, thanks to structs, and also to map a buffer to each struct to have easy access to the data.
 
-As mentioned at the beginning of this article, we know that NodeJS works on a higher layer of the OSI model. Because of that, yes, we wrote our new header code to make a ping request in NodeJS, but we had to use an external module called raw-socket, which is basically C code wrapped in Javascript for easy use in NodeJS.
+As mentioned at the beginning of this article, we know that NodeJS works on a higher layer of the OSI model. Because of that, yes, we wrote our new header code to make a ping request in NodeJS, but we had to use an external module called [raw-socket](https://www.npmjs.com/package/raw-socket), which is basically C code wrapped in Javascript for easy use in NodeJS.
 
-This also means that this module might work differently under different systems, since it uses the sockets that the systems is providing. The author of this module, of course, tried to make sure it would work in as many places as possible, but different systems - like Windows and MacOS - don’t adhere to the POSIX standard. I highly recommend reading the project README.md file to learn more.
+This also means that this module might work differently under different systems, since it uses the sockets that the systems is providing. The author of this module, of course, tried to make sure it would work in as many places as possible, but different systems - like Windows and MacOS - don’t adhere to the POSIX standard. I highly recommend reading the project [README.md](https://github.com/stephenwvickers/node-raw-socket) file to learn more.
 
 # Was it that bad?
 
