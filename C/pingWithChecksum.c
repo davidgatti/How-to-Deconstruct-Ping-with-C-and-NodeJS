@@ -42,33 +42,33 @@ int main() {
     icmp_hdr_t pckt;
 
     //
-    //  4. Set the apropriate values to our struct, which is our ICMP header
+    //  4. Set the appropriate values to our struct, which is our ICMP header
     //
     pckt.type = 8;              // The echo request is 8
     pckt.code = 0;              // No need
-    pckt.chksum = 0;            // The chacksum first needs to be calcualted
+    pckt.chksum = 0;            // The checksum first needs to be calculated
     pckt.identifier = getpid(); // Set a random Nr. in this case the app ID
-    pckt.sequence_number = 1;   // Normaly you would increment this nummber
+    pckt.sequence_number = 1;   // Normally you would increment this number
     pckt.data = 0;              // We don't send anything.
 
-    // 
+    //
     //  5. Calculate the checksum based on the whole header, and only then
     //     you add it to the header.
-    // 
+    //
     pckt.chksum = checksum((uint16_t *)&pckt, sizeof(pckt));
 
     //
-    //  6. Creatign a IP Header from a struct that exists in another library
-    //  
+    //  6. Creation a IP Header from a struct that exists in another library
+    //
     struct sockaddr_in addr;
     addr.sin_family = AF_INET;
     addr.sin_port = 0;
     addr.sin_addr.s_addr = inet_addr("8.8.8.8");
 
     //
-    //  7. Send our PING 
+    //  7. Send our PING
     //
-    int actionSendResult = sendto(s, &pckt, sizeof(pckt), 
+    int actionSendResult = sendto(s, &pckt, sizeof(pckt),
                                   0, (struct sockaddr*)&addr, sizeof(addr));
 
     //
@@ -81,15 +81,15 @@ int main() {
     }
 
     //
-    //  8. Prepare all the necesary variable to handle the response
+    //  8. Prepare all the necessary variable to handle the response
     //
     unsigned int resAddressSize;
     unsigned char res[30] = "";
     struct sockaddr resAddress;
 
-    // 
+    //
     //  9. Creating the struct to better handle the response
-    // 
+    //
     typedef struct {
         uint8_t type;
         uint8_t code;
@@ -101,27 +101,27 @@ int main() {
     //
     //  10. Read the response from the remote host
     //
-    int ressponse = recvfrom(s, res, sizeof(res), 0, &resAddress, 
+    int ressponse = recvfrom(s, res, sizeof(res), 0, &resAddress,
                              &resAddressSize);
 
     //
-    //  -> Display the response by accessign the struct
+    //  -> Display the response by accessing the struct
     //
     if(ressponse > 0)
     {
-        // 
-        //  11. Create the response variable usign our custom struct
-        // 
+        //
+        //  11. Create the response variable using our custom struct
+        //
         icmp_response_t* echo_response;
 
         //
-        //  12. Map our resposne to our response struct starting from byte 20
+        //  12. Map our response to our response struct starting from byte 20
         //
         echo_response = (icmp_response_t *)&res[20];
 
-        // 
-        //  -> Log the data that we'v got back
-        // 
+        //
+        //  -> Log the data that we've got back
+        //
         printf(
             "type: %x, code: %x, checksum: %x, identifier: %x, sequence: %x\n",
             echo_response->type,
@@ -132,8 +132,8 @@ int main() {
         );
 
         exit(0);
-    } 
-    else 
+    }
+    else
     {
         perror("Response Error");
         exit(0);
@@ -151,12 +151,12 @@ int32_t checksum(uint16_t *buf, int32_t len)
     //  1. Variable needed for the calculation
     //
     int32_t nleft = len;    // Save how big is the header
-    int32_t sum = 0;        // Container for the calcualted value
+    int32_t sum = 0;        // Container for the calculated value
     uint16_t *w = buf;      // Save the first 2 bytes of the header
-    uint16_t answer = 0;    // The state of our final anwser
+    uint16_t answer = 0;    // The state of our final answer
 
     //
-    //  2. Summ evry other byte from the header
+    //  2. Sum every other byte from the header
     //
     while(nleft > 1)
     {
@@ -165,12 +165,11 @@ int32_t checksum(uint16_t *buf, int32_t len)
     }
 
     //
-    //  3. No idea
+    //  3. Handle odd headers
     //
     if(nleft == 1)
     {
-        *(uint16_t *)(&answer) = *(uint8_t *)w;
-        sum += answer;
+        sum += *(uint8_t *)w;
     }
 
     //
