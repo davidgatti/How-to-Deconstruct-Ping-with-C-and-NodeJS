@@ -38,25 +38,25 @@ int main() {
     icmp_hdr_t pckt;
 
     //
-    //  4. Set the apropriate values to our struct, which is our ICMP header
+    //  4. Set the appropriate values to our struct, which is our ICMP header
     //
     pckt.type = 8;          // The echo request is 8
     pckt.code = 0;          // No need
-    pckt.chksum = 0xfff7;   // Fixed checksume since the data is not changing
+    pckt.chksum = 0xfff7;   // Fixed checksum since the data is not changing
     pckt.data = 0;          // We don't send anything.
 
     //
-    //  5. Creatign a IP Header from a struct that exists in another library
-    //  
+    //  5. Creating a IP Header from a struct that exists in another library
+    //
     struct sockaddr_in addr;
     addr.sin_family = AF_INET;
     addr.sin_port = 0;
     addr.sin_addr.s_addr = inet_addr("8.8.8.8");
 
     //
-    //  6. Send our PING 
+    //  6. Send our PING
     //
-    int actionSendResult = sendto(s, &pckt, sizeof(pckt), 
+    int actionSendResult = sendto(s, &pckt, sizeof(pckt),
                                   0, (struct sockaddr*)&addr, sizeof(addr));
 
     //
@@ -69,7 +69,7 @@ int main() {
     }
 
     //
-    // 7. Prepare all the necesary variable to handle the response
+    // 7. Prepare all the necessary variable to handle the response
     //
     unsigned int resAddressSize;
     unsigned char res[30] = "";
@@ -78,7 +78,7 @@ int main() {
     //
     //  8. Read the response from the remote host
     //
-    int ressponse = recvfrom(s, res, sizeof(res), 0, &resAddress, 
+    int ressponse = recvfrom(s, res, sizeof(res), 0, &resAddress,
                              &resAddressSize);
 
     //
@@ -97,7 +97,7 @@ int main() {
 
         exit(0);
     }
-    else 
+    else
     {
         perror("Response Error");
         exit(0);
