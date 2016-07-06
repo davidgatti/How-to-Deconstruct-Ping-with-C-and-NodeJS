@@ -4,7 +4,7 @@ let raw = require ("raw-socket");
 let header = [];
 
 //
-//	1. Create the structure where we are going to 
+//	1. Create the structure where we are going to
 //	   save our header
 //
 let type            = new Buffer(1);
@@ -15,7 +15,7 @@ let chksum          = new Buffer(2);
 let data            = new Buffer(4);
 
 //
-//	2. Wrtie the apropriate values.
+//	2. Write the appropriate values.
 //
 type.writeUInt8(0x8, 0);
 code.writeUInt8(0x0, 0);
@@ -40,7 +40,7 @@ header.push(data);
 let headerConcat = new Buffer.concat(header, 12);
 
 //
-//	5. Creatign the socket uign the ICMP protocol
+//	5. Creating the socket using the ICMP protocol
 //
 var socket = raw.createSocket(
 	{
@@ -49,14 +49,14 @@ var socket = raw.createSocket(
 );
 
 //
-//	6. Sendign the request for a ping
+//	6. Sending the request for a ping
 //
 socket.send(headerConcat, 0, 12, "8.8.8.8", function(error, bytes)
 	{
-	    // 
+	    //
 	    //	-> If there is any error, show it.
-	    // 
-	    if (error) 
+	    //
+	    if (error)
 	    {
 	        console.log(error.toString());
 	    }
@@ -64,9 +64,9 @@ socket.send(headerConcat, 0, 12, "8.8.8.8", function(error, bytes)
 );
 
 //
-//	7. Listent for the remote host response
+//	7. Listen for the remote host response
 //
-socket.on("message", function (buffer, source) 
+socket.on("message", function (buffer, source)
 	{
 		//
 		//	-> Show the response message
