@@ -6,6 +6,8 @@ I know that the words protocol, binary, and crafting - might sound hard or compl
 
 # How to understand a header specification
 
+![icmp_header](https://raw.githubusercontent.com/davidgatti/Deconstructing-Ping-with-C-and-NodeJS/master/icmp_header.png)
+
 If you visit the wikipedia page that covers the ICMP protocol, you’ll find this table that describes the header that needs to be sent over the wire to actually make a Ping request.
 
 Let's start by understanding that we are talking about a binary protocol, meaning we are going to send bytes, which are numbers. Those numbers are as is, they are not an ASCII representation of the keyboard character set, for example.
