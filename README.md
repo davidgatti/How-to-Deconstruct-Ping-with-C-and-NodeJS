@@ -94,3 +94,15 @@ This also means that this module might work differently under different systems,
 And you made it! :) I hope this article was clear and to the point, and that protocols don't scare you anymore! By now, this word should make you excited at the prospect of learning how a piece of software is able to communicate with another remote device, whether it's a computer, IoT, or even a radio.
 
 As always, if you would like me to explain something in greater detail, please feel free to ask me!
+
+# Thank you
+
+I want to thank all of the good people who helped me with this project, including:
+
+- [Tomasz Wątorowski](http://mightydevices.com): For helping me understand C even better.
+
+# My other projects
+
+- [IoT Water Flow Meter](https://www.hackster.io/davidgatti/iot-water-flow-meter-4595ff?ref=user&ref_id=6416&offset=0): Measure the water consumption in your house with a Particle and water flow sensors.
+- [IoT Garage Opener](https://www.hackster.io/davidgatti/garage-opener-591175?ref=user&ref_id=6416&offset=1): A non destructive basic garage opener
+- [dgCam for Android](https://github.com/davidgatti/dgCam): Custom camera for Android created for testing, playing and learning.
