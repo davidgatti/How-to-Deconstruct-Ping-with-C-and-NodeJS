@@ -1,3 +1,5 @@
+# Deconstructing Ping with C and NodeJS
+
 I’m David Gatti, and my goal with this repository is to again demystify the word protocols. I'll be a bit more specific this time, and cover structs in C. This is another in a series of articles in which I try to learn something new myself, while proving that there is nothing to hard to learn. We just need to pass through the unknown, cloudy zone. On the other side, the weather is clear and sunny.
 
 Before you start, I recommend that you read the previous article, in which I explain sockets in detail, using Particle and NodeJS. We're going to use sockets in this one, too, but this time, we're going to focus on how to work with a binary protocol. We're also going to craft our own ICMP header, and read the response from the remote host.
