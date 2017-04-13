@@ -14,7 +14,7 @@ If you visit the [wikipedia page](https://en.wikipedia.org/wiki/Internet_Control
 
 Let's start by understanding that we are talking about a binary protocol, meaning we are going to send bytes, which are numbers. Those numbers are as is, they are not an ASCII representation of the keyboard character set - for example.
 
-One byte is 8 bits, which means that an integer of value 8 is 00001000. This is not an ASCII 8, the same letter that you are reading right now. This means that we can’t type just the number 8 on our keyboards and send it out.
+One byte is 8 bits, which means that an integer of value 8 is `00001000`. This is not an ASCII 8, the same letter that you are reading right now. This means that we can’t type just the number 8 on our keyboards and send it out.
 
 # Pre flight check
 
