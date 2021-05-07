@@ -1,6 +1,6 @@
 # Deconstructing Ping with C and NodeJS
 
-I’m [David](https://david.gatti.pl), and my goal with this repository is to demystify the word protocols in enven more detail then my previous article called [IoT-Raw-Sockets-Examples](https://github.com/davidgatti/IoT-Raw-Sockets-Examples), and proving that there is nothing to hard to learn. We just need to pass through the unknown...
+I’m [David](https://david.gatti.io), and my goal with this repository is to demystify the word protocols in enven more detail then my previous article called [IoT-Raw-Sockets-Examples](https://github.com/davidgatti/IoT-Raw-Sockets-Examples), and proving that there is nothing to hard to learn. We just need to pass through the unknown...
 
 Before you start, I recommend that you read the [previous article](https://github.com/davidgatti/IoT-Raw-Sockets-Examples), in which I explain sockets in detail, using Particle and NodeJS. We're going to use sockets in this one, too, but this time, we're going to focus on how to work with a binary protocol. We're also going to craft our own ICMP header, and read the response from the remote host.
 
